@@ -2,7 +2,7 @@
     "name": "Product_Devcontainer",
     "dockerComposeFile": [
         "../docker-compose.yml",
-        "docker-compose.yml"
+        "docker-compose.debug.yml"
     ],
     "service": "django",
     "workspaceFolder": "/app/backend",
@@ -14,7 +14,14 @@
     "forwardPorts": [8000, 3000, 5432, 6379, 9092, 80, 9090, 3001, 8080],
     "runServices": [
         "django",
-        "react"
+        "react",
+        "redis",
+        "kafka",
+        "zookeeper",
+        "grafana",
+        "dbeaver",
+        "postgres",
+        "prometheus"
     ],
     "customizations": {
         "vscode": {
@@ -36,7 +43,9 @@
                 "files.autoSave": "afterDelay"
             }
         }
-    }
+    },
+    "postCreateCommand": "echo 'Dev container with Docker CLI is ready!'"
 }
+
 
 
