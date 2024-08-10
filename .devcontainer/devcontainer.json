@@ -7,9 +7,9 @@
     "service": "django",
     "workspaceFolder": "/app/backend",
     "mounts": [
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-        "source=${localWorkspaceFolder}/backend,target=/app/backend,type=bind",
-        "source=${localWorkspaceFolder}/frontend,target=/app/frontend,type=bind"
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind,consistency=consistent",
+        "source=${localWorkspaceFolder}/backend,target=/app/backend,type=bind,consistency=consistent",
+        "source=${localWorkspaceFolder}/frontend,target=/app/frontend,type=bind,consistency=consistent"
     ],
     "forwardPorts": [8000, 3000, 5432, 6379, 9092, 80, 9090, 3001, 8080],
     "runServices": [
