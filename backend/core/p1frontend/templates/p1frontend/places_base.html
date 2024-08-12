@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'libs/leaflet/leaflet.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block js_links %}
+<script src="{% static 'libs/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'javascript/main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="grid-container">
+    <div class="grid-1">
+        <!-- Proximity input field -->
+        <div id="controls">
+            <label for="proximity">Proximity (km):</label>
+            <input id="proximity" type="number" value="5" min="1" step="0.1" />
+        </div>
+        
+        <div id="map"></div>
+    </div>
+
+    <div class="grid-2">
+          <div class="column-menu" id="menu-information">
+            <p id="menu_title"> FreeMarkt </p>
+            <img id='placeimage' src="{% static 'media/place_images/no_image.jpg' %}" alt="No image">
+            <p id="menu_text"></p>
+          </div>
+    </div>
+</div>
+{% endblock %}
+

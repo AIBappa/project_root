@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   debug:
     build:
@@ -6,9 +7,11 @@ services:
       dockerfile: .devcontainer/Dockerfile.debug
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/.X11-unix:/tmp/.X11-unix # X11 forwarding
+    environment:
+      - DISPLAY=${DISPLAY}
     privileged: true
     command: sleep infinity
-    
-  # Define other services if needed, or override existing services
+
 
  

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     libdbus-1-dev \
     gdal-bin \
     libgdal-dev \
-    firefox-esr
+    postgresql-client
 
 # Upgrade pip
 RUN pip install --upgrade pip
