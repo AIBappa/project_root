@@ -97,15 +97,17 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# Have to likely change the host IP but need to run and check this.
+# NAME,USER, PASSWORD, HOST and PORT are from environment variables defined in Django container in docker-compose.yml. If they do not work, default ones are given.
+# os.environ.get( environmental_varible, default value)
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'udemyp1',
-        'USER': 'postgres',
-        'PASSWORD': 'true3',
-        'HOST': '172.22.0.3',
-        'PORT': '5432'}
+        'NAME': os.environ.get('POSTGRES_DB', 'udemyp1'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'true3'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        }
 }
 
 

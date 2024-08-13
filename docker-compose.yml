@@ -19,8 +19,11 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
       - REDIS_HOST=redis
       - KAFKA_BROKER=kafka:9092
+    networks:
+      - common_network
 
   react:
     build:
@@ -31,6 +34,8 @@ services:
       - ./frontend:/app/frontend
     ports:
       - "3000:3000"
+    networks:
+      - common_network
 
   postgres:
     image: postgis/postgis:latest
@@ -40,9 +45,11 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5433:5433"
+      - "5432:5432"
     volumes:
       - /mnt/c/Business/Databases/Data/sql/postgresql/16/main:/var/lib/postgresql/data
+    networks:
+      - common_network
 
   redis:
     image: redis:latest
@@ -51,6 +58,8 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    networks:
+      - common_network
 
   zookeeper:
     image: wurstmeister/zookeeper:latest
@@ -60,6 +69,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    networks:
+      - common_network
 
   kafka:
     image: wurstmeister/kafka:latest
@@ -74,6 +85,8 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
       - "9092:9092"
+    networks:
+      - common_network
 
   osm-tile-server:
     image: overv/openstreetmap-tile-server:latest
@@ -89,6 +102,8 @@ services:
       - "80:80"
     volumes:
       - tiles_data:/var/lib/posttiles
+    networks:
+      - common_network
 
   prometheus:
     image: prom/prometheus:latest
@@ -97,6 +112,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - common_network
 
   grafana:
     image: grafana/grafana:latest
@@ -105,8 +122,14 @@ services:
       - prometheus
     ports:
       - "3001:3000"
+    networks:
+      - common_network
 
 volumes:
   postgres_data:
   redis_data:
   tiles_data:
+
+networks:
+  common_network:
+    driver: bridge
