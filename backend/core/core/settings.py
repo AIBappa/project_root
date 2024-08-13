@@ -104,8 +104,8 @@ DATABASES = {
         'NAME': 'udemyp1',
         'USER': 'postgres',
         'PASSWORD': 'true3',
-        'HOST': '0.0.0.0',
-        'PORT': '5433'}
+        'HOST': '172.22.0.3',
+        'PORT': '5432'}
 }
 
 
