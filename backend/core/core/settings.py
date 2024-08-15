@@ -99,6 +99,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # NAME,USER, PASSWORD, HOST and PORT are from environment variables defined in Django container in docker-compose.yml. If they do not work, default ones are given.
 # os.environ.get( environmental_varible, default value)
+# HOST specifies the IP address via actual IP notation or service notation (services get IP address allocated by docker compose)
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',

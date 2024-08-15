@@ -12,7 +12,7 @@
         "source=${localWorkspaceFolder}/frontend,target=/app/frontend,type=bind"
     ],
     "forwardPorts": [
-        8000, 3000, 5432, 6379, 9092, 80, 9090, 3001, 8080, 8001
+        8000, 3000, 5432, 6379, 9092, 80, 9090, 3001, 8080, 8001, 8050
     ],
     "runServices": [
         "django",
@@ -25,7 +25,8 @@
         "prometheus",
         "osm-tile-server",
         "pgadmin",
-        "redisinsight"
+        "redisinsight",
+        "test-app"
     ],
     "customizations": {
         "vscode": {

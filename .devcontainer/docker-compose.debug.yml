@@ -26,6 +26,26 @@ services:
     networks:
       - common_network
 
+  test-app: #To run this service, it needs to be noted in devcontainer.json
+    build:
+      context: ./.devcontainer/test-app
+      dockerfile: dockerfile.simulator
+    container_name: Dummydatacreate
+    volumes:
+      - ./.devcontainer/test-app:/test-app  # Maps the local directory to /app in the container
+    env_file:
+    - ./.env
+    environment:
+      #- DATABASE_URL=postgresql+psycopg2://postgres:true4@postgis:5432/gist4
+      DATABASE_URL: "postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}"
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"  # Adjust according to your application needs
+    #command: ["sleep", "infinity"]  # Keeps the container running after building
+    networks:
+      - common_network
+
 networks:
   common_network:
     driver: bridge

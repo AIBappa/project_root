@@ -50,6 +50,10 @@ class Contact(models.Model):
     address = models.CharField(max_length=100)
     gps_location = models.PointField()
     email = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table = "cosellwkt"
+        managed = False
 
     def __str__(self):
         return self.name
